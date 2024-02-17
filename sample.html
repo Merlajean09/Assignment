@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignment No. 2</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn­5384xqQ1aoWXA+058RXP­xPg6fy4IWvTNh0E263Xm­FcJlSAwiGgFAW/­dAiS6JXm" crossorigin="anonymo­us">
+</head>
+<body>
+
+<table class="table table-striped table-bordered table-hover table-sm table-responsive table-light">
+<thead class="thead-dark">
+<tr>
+<th scope="col">#</th>
+<th scope="col">Name</th>
+<th scope="col">Email</th>
+<th scope="col">Gender</th>
+</tr>
+</thead>
+<tbody id="tableBody">
+
+</tbody>
+</table>
+
+
+<script>
+var xhr = new XMLHttpRequest();
+
+xhr.onload = function(){
+var res = JSON.parse(this.responseText);
+console.log(res);
+output(res);
+}
+
+
+function output(res){
+var tableBody = document.getElementById('tableBody');
+for (var i = 0; i < res.length; i++) {
+var row = "<tr>" +
+"<th>" + res[i].id + "</th>" +
+"<td>" + res[i].name + "</td>" +
+"<td>" + res[i].email + "</td>" +
+"<td>" + res[i].gender + "</td>" +
+"</tr>";
+tableBody.innerHTML += row;
+}
+}
+
+xhr.open('GET',"http://localhost/Assignment/api.php");
+xhr.send();
+</script>
+
+
+</body>
+</html>
